@@ -54,23 +54,6 @@ export function Hero() {
               Leistungen ansehen
             </ButtonLink>
           </div>
-
-          <div className="mt-8 flex items-center gap-4">
-            <Image
-              src="/mario-kleindienst-portrait.jpg"
-              alt=""
-              width={192}
-              height={192}
-              priority
-              className="size-14 shrink-0 rounded-full object-cover ring-2 ring-sheet"
-            />
-            <p className="text-sm leading-snug text-muted">
-              <span className="block font-semibold text-ink" translate="no">
-                {site.owner.name}
-              </span>
-              Ihr Ansprechpartner. Antwort innerhalb von zwei Werktagen.
-            </p>
-          </div>
         </div>
 
         <Bon />
