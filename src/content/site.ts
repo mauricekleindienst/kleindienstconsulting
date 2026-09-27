@@ -22,7 +22,13 @@ export const site = {
      * { src: "/mario-kleindienst.jpg", alt: "…", width: 1448, height: 1086, focus: "58% 35%" }
      * `focus` = Bildausschnitt (CSS object-position), damit die Person mittig bleibt.
      */
-    portrait: null as null | { src: string; alt: string; width: number; height: number; focus: string },
+    portrait: {
+      src: "/mario-kleindienst.jpg",
+      alt: "Mario Kleindienst mit verschränkten Armen in einer holzvertäfelten Gaststube",
+      width: 1448,
+      height: 1086,
+      focus: "57% 28%",
+    } as null | { src: string; alt: string; width: number; height: number; focus: string },
     linkedin: "https://www.linkedin.com/in/mario-kleindienst-64324a213/",
     /** Ausbildungsbeginn – daraus wird "über 35 Jahre" berechnet. */
     careerStart: 1988,

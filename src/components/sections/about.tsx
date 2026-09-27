@@ -1,6 +1,5 @@
 import { career, principles, site, testimonial } from "@/content/site"
 import { yearsInTrade } from "@/lib/experience"
-import { Portrait } from "../portrait"
 import { LinkedIn } from "../ui/icons"
 import { Section, SectionHeader, SectionTitle } from "../ui/section"
 
@@ -9,33 +8,23 @@ export function About() {
     <Section id="ueber-mich" tone="deep" aria-labelledby="ueber-mich-title">
       <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <Portrait />
-          <div className="mt-6 flex items-center justify-between gap-4">
-            <div>
-              <p className="font-display text-2xl font-bold" translate="no">
-                {site.owner.name}
-              </p>
-              <p className="text-muted">{site.owner.role}</p>
-            </div>
-            <a
-              href={site.owner.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-md border border-ink/25 px-4 transition-colors hover:border-ink hover:bg-ink hover:text-linen"
-            >
-              <LinkedIn className="size-4" />
-              LinkedIn
-              <span className="sr-only">(öffnet in neuem Tab)</span>
-            </a>
-          </div>
-        </div>
-
-        <div>
           <SectionHeader>
             <SectionTitle id="ueber-mich-title">Über {yearsInTrade()} Jahre am Pass, jetzt an Ihrer Seite</SectionTitle>
           </SectionHeader>
+          <a
+            href={site.owner.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-md border border-ink/25 px-4 transition-colors hover:border-ink hover:bg-ink hover:text-linen"
+          >
+            <LinkedIn className="size-4" />
+            {site.owner.name} auf LinkedIn
+            <span className="sr-only">(öffnet in neuem Tab)</span>
+          </a>
+        </div>
 
-          <div className="mt-8 max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-soft">
+        <div>
+          <div className="max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-soft">
             <p>
               Mein Handwerk habe ich 1988 als Koch gelernt. Seitdem stehe ich in Küchen, seit fast
               zwei Jahrzehnten als Küchenchef in München und Oberbayern: in den Augustiner
