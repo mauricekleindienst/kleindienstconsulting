@@ -34,7 +34,7 @@ export const site = {
     careerStart: 1988,
   },
   contact: {
-    email: "[kontakt@ihre-domain.de]",
+    email: "info@gastro-kleindienst.de",
     phone: "+4915154609111",
     /** Anzeigeformat der Telefonnummer */
     phoneDisplay: "0151 54609111",
@@ -131,7 +131,7 @@ export const services: readonly Service[] = [
  */
 export const career = [
   { period: "2025", role: "Planung & Durchführung der Gastronomie", place: "Paulaner Festzelt, Oktoberfest München" },
-  { period: "2023", role: "Küchenchef 1. OG", place: "Spatenhaus an der Oper, München", note: "Kuffler Gruppe" }, // TODO: Zeitraum prüfen
+  { period: "2023", role: "Küchenchef 1. OG", place: "Spatenhaus an der Oper, München", note: "Kuffler Gruppe" },
   { period: "2021 – 2022", role: "Gastronomieplanung", place: "Rauschenberger Gastronomie, Motorworld München" },
   { period: "2016 – 2020", role: "Küchenchef", place: "Haus Kuffler, Flughafen München T2", note: "Mangostin Airport & Bagutta Pizza Culture" },
   { period: "2011 – 2016", role: "Küchenchef", place: "Zum Spöckmeier, München" },
