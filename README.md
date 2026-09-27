@@ -63,12 +63,12 @@ Alle Texte, Firmendaten, Leistungen, Werdegang, FAQ und Presse stehen zentral in
 
 Werte in `[eckigen Klammern]` in `src/content/site.ts` sind Platzhalter:
 
-- [ ] **Impressum-Angaben** (§ 5 DDG): ladungsfähige Geschäftsanschrift, Telefon, E-Mail, Rechtsform
+- [x] **Impressum-Angaben** (§ 5 DDG): Hauserweg 5, 82061 Neuried · 0151 54609111 · info@gastro-kleindienst.de
 - [ ] **USt-IdNr.** eintragen – oder `vatId` leeren (z. B. Kleinunternehmer)
-- [ ] **Handelsregister** nur bei Eintragung (`register`)
-- [ ] **Domain** in `site.url` setzen (wirkt auf Canonical, Sitemap, Open Graph, Schema.org)
+- [x] **Handelsregister**: keine Eintragung (Einzelunternehmen)
+- [x] **Domain**: `https://gastro-kleindienst.de`
 - [x] **Portrait**: `public/mario-kleindienst.jpg`
-- [ ] **Werdegang nach 2020** prüfen (Spatenhaus-Zeitraum ist aus Presseberichten abgeleitet)
+- [x] **Werdegang** bestätigt (2007 bis 2025, plus Restaurant Hannappel)
 - [ ] **Zitat aus dem Arbeitszeugnis**: Veröffentlichung mit Haus Kuffler abstimmen – oder entfernen
 - [ ] **Datenschutzerklärung** und Impressum juristisch prüfen lassen (die Texte sind sorgfältige Vorlagen, keine Rechtsberatung)
 - [ ] Mit Cloudflare den **Auftragsverarbeitungsvertrag (DPA)** abschließen (Dashboard → Manage Account → Configurations → Data Processing Addendum)
