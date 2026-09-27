@@ -5,6 +5,8 @@
   "name": "kleindienstconsulting",
   "main": "worker/index.ts",
   "compatibility_date": "2026-09-25",
+  // Im Dashboard gesetzte Variablen (z. B. SITE_PASSWORD) bei Deploys nicht löschen
+  "keep_vars": true,
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",

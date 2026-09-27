@@ -44,7 +44,8 @@ Static Assets ausgeliefert, davor läuft der Worker [`worker/index.ts`](worker/i
 Die gesamte Website ist nur mit Passwort erreichbar, solange im Worker unter
 **Workers & Pages → kleindienstconsulting → Settings → Variables and Secrets** das Secret
 **`SITE_PASSWORD`** gesetzt ist (alternativ: `npx wrangler secret put SITE_PASSWORD`).
-Secrets wirken sofort, ohne neues Deployment.
+Secrets wirken sofort, ohne neues Deployment. Wichtig: als Typ **„Secret“** anlegen (verschlüsselt).
+Dank `"keep_vars": true` in `wrangler.jsonc` bleibt die Variable auch bei neuen Deployments erhalten.
 
 - Öffentlich sind nur `/zugang` sowie Impressum und Datenschutz des Betreibers (Mousewerk) unter `/zugang/…`.
 - Alle anderen Seiten, Daten (`*.txt`), Bilder, Sitemap: ohne Passwort gesperrt; `robots.txt` sperrt Suchmaschinen, jede Antwort trägt `X-Robots-Tag: noindex`.
