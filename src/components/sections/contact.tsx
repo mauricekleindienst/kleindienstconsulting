@@ -13,7 +13,7 @@ export function Contact() {
   ] as const
 
   return (
-    <Section id="kontakt" tone="green" aria-labelledby="kontakt-title">
+    <Section id="kontakt" tone="green" aria-labelledby="kontakt-title" data-contact-area>
       <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
         <SectionHeader>
           <SectionTitle id="kontakt-title" className="text-display-xl">

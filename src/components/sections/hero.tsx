@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { services, site } from "@/content/site"
+import { services } from "@/content/site"
 import { yearsInTrade } from "@/lib/experience"
 import { ButtonLink } from "../ui/button-link"
 import { Container } from "../ui/container"
@@ -48,7 +48,7 @@ export function Hero() {
             ))}
           </dl>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div data-primary-cta className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/#kontakt">Kostenfreies Erstgespräch</ButtonLink>
             <ButtonLink href="/#leistungen" variant="secondary">
               Leistungen ansehen

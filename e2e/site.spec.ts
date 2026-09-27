@@ -237,20 +237,28 @@ test.describe("Mobil", () => {
     expect(await page.evaluate(() => document.body.style.overflow)).toBe("")
   })
 
-  test("Schnellkontakt-Leiste ist sichtbar und verdeckt keinen Footer-Inhalt", async ({ page }) => {
+  test("Schnellkontakt-Leiste erscheint nur zwischen Hero und Kontaktbereich", async ({ page }) => {
     await page.goto("/")
     const bar = page.getByRole("navigation", { name: "Schnellkontakt" })
-    await expect(bar).toBeVisible()
+    const scrollTo = (target: string) =>
+      page.evaluate((selector) => {
+        document.documentElement.style.scrollBehavior = "auto"
+        const element = document.querySelector(selector)!
+        window.scrollTo(0, element.getBoundingClientRect().top + window.scrollY - 80)
+      }, target)
+
+    // Oben: Hero-Buttons sichtbar → keine doppelte Leiste
+    await expect(bar).not.toBeInViewport()
+
+    // Mitte der Seite: Leiste sichtbar und bedienbar
+    await scrollTo("#vorgehen")
+    await expect(bar).toBeInViewport()
     await expect(bar.getByRole("link", { name: "Anrufen" })).toHaveAttribute("href", /^tel:/)
     await expect(bar.getByRole("link", { name: /^E-Mail/ })).toHaveAttribute("href", /^mailto:/)
-    await page.evaluate(() => {
-      document.documentElement.style.scrollBehavior = "auto"
-      window.scrollTo(0, document.body.scrollHeight)
-    })
-    const barTop = await bar.evaluate((el) => el.getBoundingClientRect().top)
-    const lastLink = page.locator("footer a").last()
-    const linkBottom = await lastLink.evaluate((el) => el.getBoundingClientRect().bottom)
-    expect(linkBottom).toBeLessThanOrEqual(barTop)
+
+    // Kontaktbereich: dort gibt es die Kontaktwege bereits → Leiste weg
+    await scrollTo("#kontakt")
+    await expect(bar).not.toBeInViewport()
   })
 
   test("Touch-Ziele sind mindestens 44 px hoch", async ({ page }) => {

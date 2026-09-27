@@ -110,7 +110,7 @@ export default async function ServicePage({ params }: Props) {
           <p className="text-lg font-medium text-brass">Gastronomieberatung in München</p>
           <h1 className="mt-4 font-display text-display-lg font-extrabold">{service.h1}</h1>
           <p className="mt-6 max-w-[62ch] text-lg leading-relaxed text-ink-soft sm:text-xl">{service.intro}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div data-primary-cta className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href={mailtoHref(`Anfrage: ${service.title}`)}>Kostenfreies Erstgespräch</ButtonLink>
             <ButtonLink href="/#kontakt" variant="secondary">
               Alle Kontaktwege
@@ -209,7 +209,7 @@ export default async function ServicePage({ params }: Props) {
         </Container>
       </section>
 
-      <section aria-labelledby="cta-leistung" className="bg-green py-16 text-linen sm:py-20">
+      <section data-contact-area aria-labelledby="cta-leistung" className="bg-green py-16 text-linen sm:py-20">
         <Container className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <h2 id="cta-leistung" className="font-display text-3xl font-bold sm:text-4xl">
