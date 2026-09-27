@@ -14,7 +14,7 @@ test.describe("Passwort-Schranke", () => {
   })
 
   test("Inhalte, Daten und Bilder sind ohne Passwort gesperrt", async ({ request }) => {
-    for (const path of ["/index.txt", "/index.html", "/impressum.txt", "/__next._full.txt", "/sitemap.xml"]) {
+    for (const path of ["/index.txt", "/index.html", "/impressum.txt", "/__next._full.txt"]) {
       const response = await request.get(path, { maxRedirects: 0 })
       expect([401, 303], path).toContain(response.status())
       expect(await response.text(), path).not.toContain("Kalkulation")
@@ -37,8 +37,20 @@ test.describe("Passwort-Schranke", () => {
     expect((await request.get("/icon.png")).status()).toBe(200)
   })
 
-  test("Suchmaschinen werden ausgesperrt", async ({ page, request }) => {
-    expect(await (await request.get("/robots.txt")).text()).toContain("Disallow: /")
+  test("robots.txt und Sitemap sind ohne Passwort erreichbar", async ({ request, baseURL }) => {
+    const robots = await request.get("/robots.txt", { maxRedirects: 0 })
+    expect(robots.status()).toBe(200)
+    const rules = await robots.text()
+    expect(rules).not.toMatch(/Disallow: \/\s*$/m)
+    expect(rules).toContain(`Sitemap: ${baseURL}/sitemap.xml`)
+
+    const sitemap = await request.get("/sitemap.xml", { maxRedirects: 0 })
+    expect(sitemap.status()).toBe(200)
+    expect(sitemap.headers()["x-robots-tag"]).toBeUndefined()
+    expect(await sitemap.text()).toContain(`<loc>${baseURL}/impressum</loc>`)
+  })
+
+  test("Zugangsseite wird nicht indexiert", async ({ page }) => {
     const response = await page.goto("/zugang")
     expect(response?.headers()["x-robots-tag"]).toContain("noindex")
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/)

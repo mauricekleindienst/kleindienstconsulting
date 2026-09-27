@@ -48,7 +48,7 @@ Secrets wirken sofort, ohne neues Deployment. Wichtig: als Typ **„Secret“** 
 Dank `"keep_vars": true` in `wrangler.jsonc` bleibt die Variable auch bei neuen Deployments erhalten.
 
 - Öffentlich sind nur `/zugang` sowie Impressum und Datenschutz des Betreibers (Mousewerk) unter `/zugang/…`.
-- Alle anderen Seiten, Daten (`*.txt`), Bilder, Sitemap: ohne Passwort gesperrt; `robots.txt` sperrt Suchmaschinen, jede Antwort trägt `X-Robots-Tag: noindex`.
+- Alle anderen Seiten, Daten (`*.txt`) und Bilder: ohne Passwort gesperrt, jede Antwort trägt `X-Robots-Tag: noindex`. `robots.txt` und `sitemap.xml` bleiben öffentlich (Google Search Console).
 - Nach dem Login: HttpOnly-Cookie `kgc_zugang` (30 Tage), signiert mit dem Passwort. **Passwort ändern = alle abmelden.**
 - Abmelden: `/zugang/abmelden`.
 - Empfehlung: in Cloudflare unter *Security → WAF → Rate limiting rules* POST-Anfragen auf `/zugang` begrenzen (z. B. 10 pro Minute und IP).

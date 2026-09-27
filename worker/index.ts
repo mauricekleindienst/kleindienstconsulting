@@ -7,7 +7,7 @@
  * Ohne das Secret ist die Website öffentlich.
  *
  * Öffentlich bleiben nur die Zugangsseite (/zugang, inkl. Impressum und
- * Datenschutz des Betreibers) und die statischen Build-Dateien.
+ * Datenschutz des Betreibers), robots.txt, sitemap.xml und die statischen Build-Dateien.
  */
 
 import { site } from "../src/content/site"
@@ -20,6 +20,9 @@ interface Env {
 const COOKIE = "kgc_zugang"
 const MAX_AGE = 60 * 60 * 24 * 30 // 30 Tage
 const GATE = "/zugang"
+
+/** Für Suchmaschinen: immer unverändert ausliefern (kein Passwort, kein noindex). */
+const CRAWLER_FILES = /^\/(robots\.txt|sitemap\.xml)$/
 
 /** Pfade, die auch ohne Passwort erreichbar sein müssen. */
 const PUBLIC_PATHS = [
@@ -141,12 +144,8 @@ async function gate(request: Request, env: Env, next: (input?: Request | string)
   const path = url.pathname
   const expected = await sign(password)
 
-  // Suchmaschinen während der Vorschau komplett aussperren
-  if (path === "/robots.txt") {
-    return new Response("User-agent: *\nDisallow: /\n", {
-      headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
-    })
-  }
+  // robots.txt und Sitemap bleiben für Suchmaschinen erreichbar (Search Console)
+  if (CRAWLER_FILES.test(path)) return next()
 
   // Passwort prüfen
   if (path === GATE && request.method === "POST") {
