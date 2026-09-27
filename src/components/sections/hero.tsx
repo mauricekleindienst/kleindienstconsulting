@@ -4,12 +4,12 @@ import { ButtonLink } from "../ui/button-link"
 import { Container } from "../ui/container"
 
 const houses = [
+  "Paulaner Festzelt auf der Wiesn",
   "Spatenhaus an der Oper",
+  "Motorworld München",
   "Kuffler am Flughafen",
   "Augustiner Bräustuben",
   "Zum Spöckmeier",
-  "Haxenbauer",
-  "Hannappel",
 ] as const
 
 export function Hero() {
@@ -38,7 +38,7 @@ export function Hero() {
           </div>
 
           <div className="mt-14 border-t border-line pt-6">
-            <p className="text-sm text-muted">Gekocht und Küchen geführt unter anderem in</p>
+            <p className="text-sm text-muted">Küchen und Gastronomie geführt unter anderem in</p>
             <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-display text-lg font-semibold text-ink-soft">
               {houses.map((house) => (
                 <li key={house} translate="no">

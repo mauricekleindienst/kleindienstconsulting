@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import { LegalPage } from "@/components/legal-page"
 import { site } from "@/content/site"
+import { pageOpenGraph } from "@/lib/og"
 import { mailtoHref, telHref } from "@/lib/contact"
 
 export const metadata: Metadata = {
   title: "Impressum",
   description: `Impressum von ${site.name} – Angaben gemäß § 5 DDG.`,
+  ...pageOpenGraph("Impressum", "/impressum"),
   alternates: { canonical: "/impressum" },
   robots: { index: true, follow: true },
 }

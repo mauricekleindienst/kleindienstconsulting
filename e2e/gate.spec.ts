@@ -14,11 +14,26 @@ test.describe("Passwort-Schranke", () => {
   })
 
   test("Inhalte, Daten und Bilder sind ohne Passwort gesperrt", async ({ request }) => {
-    for (const path of ["/index.txt", "/index.html", "/impressum.txt", "/__next._full.txt", "/opengraph-image", "/sitemap.xml"]) {
+    for (const path of ["/index.txt", "/index.html", "/impressum.txt", "/__next._full.txt", "/sitemap.xml"]) {
       const response = await request.get(path, { maxRedirects: 0 })
       expect([401, 303], path).toContain(response.status())
       expect(await response.text(), path).not.toContain("Kalkulation")
     }
+  })
+
+  test("Link-Vorschau funktioniert trotz Passwort (WhatsApp, LinkedIn, iMessage …)", async ({ request, baseURL }) => {
+    for (const agent of ["WhatsApp/2.23.20.0", "LinkedInBot/1.0 (compatible; Mozilla/5.0)", "facebookexternalhit/1.1", "Twitterbot/1.0", "Slackbot-LinkExpanding 1.0"]) {
+      const response = await request.get("/impressum", { headers: { "User-Agent": agent }, maxRedirects: 0 })
+      expect(response.status(), agent).toBe(200)
+      const html = await response.text()
+      expect(html, agent).toContain('property="og:title" content="Gastronomieberatung München')
+      expect(html, agent).toContain(`property="og:image" content="${baseURL}/opengraph-image`)
+      expect(html, agent).not.toContain("Angaben gemäß § 5 DDG") // kein geschützter Inhalt
+    }
+    const image = await request.get("/opengraph-image")
+    expect(image.status()).toBe(200)
+    expect(image.headers()["content-type"]).toContain("image/png")
+    expect((await request.get("/apple-icon")).status()).toBe(200)
   })
 
   test("Suchmaschinen werden ausgesperrt", async ({ page, request }) => {

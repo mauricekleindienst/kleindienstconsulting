@@ -10,6 +10,8 @@
  * Datenschutz des Betreibers) und die statischen Build-Dateien.
  */
 
+import { site } from "../src/content/site"
+
 interface Env {
   ASSETS: Fetcher
   SITE_PASSWORD?: string
@@ -26,7 +28,21 @@ const PUBLIC_PATHS = [
   /^\/_next\/static\//,
   /^\/icon\.svg$/,
   /^\/favicon\.ico$/,
+  // Für Link-Vorschauen (WhatsApp, LinkedIn, iMessage …) und Homescreen-Icons
+  /^\/opengraph-image$/,
+  /^\/apple-icon$/,
+  /^\/manifest\.webmanifest$/,
 ]
+
+/** Crawler, die Link-Vorschauen erzeugen. Sie bekommen die Zugangsseite mit den
+ *  Marken-Metadaten direkt (200) statt einer Weiterleitung. */
+const PREVIEW_BOTS =
+  /facebookexternalhit|facebot|twitterbot|linkedinbot|whatsapp|slackbot|telegrambot|discordbot|applebot|skypeuripreview|pinterest|redditbot|embedly|iframely|xing|mastodon|bluesky|signal|googleother|vkshare|quora link preview|outbrain|w3c_validator/i
+
+/** Beim Build eingetragene Domain (site.url). Absolute Links in HTML, Sitemap & Co.
+ *  werden auf die tatsächlich aufgerufene Domain umgeschrieben – so funktionieren
+ *  Vorschaubilder und Canonicals auf workers.dev genauso wie auf der eigenen Domain. */
+const BUILD_ORIGIN = new URL(site.url).origin
 
 const encoder = new TextEncoder()
 
@@ -82,12 +98,41 @@ function privately(response: Response, path: string) {
 }
 
 export default {
-  fetch(request, env) {
-    return gate(request, env, () => env.ASSETS.fetch(request))
+  async fetch(request, env) {
+    const response = await gate(request, env, (input = request) => env.ASSETS.fetch(input))
+    const url = new URL(request.url)
+    return withRequestOrigin(response, url.origin, url.pathname)
   },
 } satisfies ExportedHandler<Env>
 
-async function gate(request: Request, env: Env, next: () => Promise<Response>) {
+async function withRequestOrigin(response: Response, origin: string, path: string) {
+  if (origin === BUILD_ORIGIN || !response.body) return response
+  const type = response.headers.get("Content-Type") ?? ""
+
+  // HTML: nur Attribute in Meta-/Link-Tags umschreiben. Die eingebetteten
+  // Next.js-Daten sind längenkodiert und dürfen nicht verändert werden.
+  if (type.startsWith("text/html")) {
+    const swap = (attribute: string) => ({
+      element(element: Element) {
+        const value = element.getAttribute(attribute)
+        if (value?.startsWith(BUILD_ORIGIN)) element.setAttribute(attribute, origin + value.slice(BUILD_ORIGIN.length))
+      },
+    })
+    return new HTMLRewriter().on("meta[content]", swap("content")).on("link[href]", swap("href")).transform(response)
+  }
+
+  // Sitemap, robots.txt und Manifest enthalten absolute URLs als Klartext
+  if (/^\/(sitemap\.xml|robots\.txt|manifest\.webmanifest)$/.test(path)) {
+    const body = (await response.text()).replaceAll(BUILD_ORIGIN, origin)
+    const headers = new Headers(response.headers)
+    headers.delete("Content-Length")
+    headers.delete("ETag")
+    return new Response(body, { status: response.status, statusText: response.statusText, headers })
+  }
+  return response
+}
+
+async function gate(request: Request, env: Env, next: (input?: Request | string) => Promise<Response>) {
   const password = env.SITE_PASSWORD
   if (!password) return next()
 
@@ -125,6 +170,12 @@ async function gate(request: Request, env: Env, next: () => Promise<Response>) {
   const authorized = safeEqual(readCookie(request, COOKIE) ?? "", expected)
   if (authorized || PUBLIC_PATHS.some((pattern) => pattern.test(path))) {
     return privately(await next(), path)
+  }
+
+  // Link-Vorschau-Crawler: Zugangsseite mit Marken-Metadaten direkt ausliefern
+  if (request.method === "GET" && PREVIEW_BOTS.test(request.headers.get("User-Agent") ?? "")) {
+    const preview = await next(new URL(GATE, url).toString())
+    return privately(new Response(preview.body, { status: 200, headers: preview.headers }), GATE)
   }
 
   // Seitenaufrufe zur Zugangsseite umleiten, alles andere (Daten, Bilder) abweisen

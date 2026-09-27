@@ -50,11 +50,28 @@ test.describe("Alle Seiten", () => {
       for (let i = 1; i < levels.length; i++) expect(levels[i] - levels[i - 1]).toBeLessThanOrEqual(1)
     })
 
-    test(`${path} Meta-Daten für SEO`, async ({ page }) => {
+    test(`${path} Meta-Daten für SEO und Link-Vorschau`, async ({ page, baseURL, request }) => {
+      // Crawler lesen das Server-HTML (ohne JavaScript) – genau das wird geprüft
+      const html = await (await request.get(path)).text()
+      const meta = (attr: "property" | "name", key: string) =>
+        html.match(new RegExp(`<meta ${attr}="${key}" content="([^"]*)"`))?.[1]
+
+      expect(html.match(/<meta name="description" content="([^"]{50,})"/), "description").toBeTruthy()
+      // Absolute URLs zeigen auf die aufgerufene Domain (Worker schreibt site.url um)
+      expect(html.match(/<link rel="canonical" href="([^"]*)"/)?.[1]).toMatch(new RegExp(`^${baseURL}`))
+      for (const property of ["og:title", "og:description", "og:url", "og:image", "og:image:width", "og:type", "og:locale"])
+        expect(meta("property", property), property).toBeTruthy()
+      expect(meta("property", "og:url")).toMatch(new RegExp(`^${baseURL}`))
+      expect(meta("name", "twitter:card")).toBe("summary_large_image")
+      const image = meta("property", "og:image")!
+      expect(image).toMatch(new RegExp(`^${baseURL}/opengraph-image`))
+      const imageResponse = await request.get(image)
+      expect(imageResponse.status()).toBe(200)
+      expect(imageResponse.headers()["content-type"]).toContain("image/png")
+      expect(html).toContain('rel="apple-touch-icon"')
+      expect(html).toContain('rel="manifest"')
+
       await page.goto(path)
-      await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.{50,}/)
-      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /^https:\/\//)
-      await expect(page.locator('meta[property="og:image"]')).toHaveCount(1)
       await expect(page.locator('meta[name="viewport"]')).not.toHaveAttribute("content", /user-scalable=no|maximum-scale=1\b/)
     })
   }
@@ -284,6 +301,9 @@ test.describe("SEO-Dateien", () => {
 
     const icon = await request.get("/icon.svg")
     expect(icon.status()).toBe(200)
+    expect((await request.get("/apple-icon")).headers()["content-type"]).toContain("image/png")
+    const manifest = await (await request.get("/manifest.webmanifest")).json()
+    expect(manifest.name).toBe("Kleindienst Gastro Consulting")
 
     const og = await request.get("/opengraph-image")
     expect(og.status()).toBe(200)

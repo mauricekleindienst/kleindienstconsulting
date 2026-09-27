@@ -3,9 +3,11 @@ import { Suspense } from "react"
 import { GateForm, GateFormFallback } from "@/components/gate-form"
 import { Container } from "@/components/ui/container"
 
+// Link-Vorschauen zeigen während der Vorschau-Phase diese Seite – daher die vollen Marken-Metadaten
 export const metadata: Metadata = {
-  title: "Vorschau",
-  description: "Diese Website befindet sich in Vorbereitung. Zugang nur mit Passwort.",
+  title: { absolute: "Gastronomieberatung München & Umgebung | Kleindienst Gastro Consulting" },
+  description:
+    "Gastronomieberatung von Ex-Küchenchef Mario Kleindienst: Kalkulation, Speisekarte, Küche und Personal. Die Website befindet sich in Vorbereitung.",
 }
 
 export default function ZugangPage() {

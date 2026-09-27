@@ -37,16 +37,16 @@ export function About() {
 
           <div className="mt-8 max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-soft">
             <p>
-              Mein Handwerk habe ich 1988 im Hotel NEWA in Dresden gelernt. Danach ging es über Ettal,
-              den Schwarzwald und Garmisch-Partenkirchen nach München: als Sous-Chef im Haxenbauer,
-              als Küchenchef in Grünwald und als Sous-Chef im Restaurant Hannappel in Essen, einem
-              16-Punkte-Haus.
+              Mein Handwerk habe ich 1988 als Koch gelernt. Seitdem stehe ich in Küchen, seit fast
+              zwei Jahrzehnten als Küchenchef in München und Oberbayern: in den Augustiner
+              Bräustuben, im Spöckmeier, bei der Neueröffnung am Mohrenplatz und für die
+              Kuffler-Gruppe am Münchner Flughafen und im Spatenhaus an der Oper.
             </p>
             <p>
-              Seit über 25 Jahren trage ich Verantwortung für Küchenbrigaden: in den Augustiner
-              Bräustuben, im Spöckmeier, bei der Neueröffnung am Mohrenplatz und für die Kuffler-Gruppe
-              am Münchner Flughafen und im Spatenhaus an der Oper. Wareneinsatz, Dienstpläne,
-              Inventuren, HACCP und die Karte waren mein Alltag.
+              Für Rauschenberger habe ich die Gastronomie der Motorworld München geplant, und 2025
+              habe ich die Gastronomie im Paulaner Festzelt auf dem Oktoberfest geplant und
+              umgesetzt. Wareneinsatz, Dienstpläne, Inventuren, HACCP, die Karte und Abläufe für
+              tausende Gäste am Tag: Das ist mein Alltag.
             </p>
             <p>
               Dieses Wissen gebe ich heute als Berater weiter. Ohne Foliensätze, dafür mit dem Blick

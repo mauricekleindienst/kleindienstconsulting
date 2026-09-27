@@ -10,24 +10,28 @@
 export const site = {
   name: "Kleindienst Gastro Consulting",
   shortName: "Kleindienst",
-  url: "https://www.kleindienst-consulting.de", // TODO: finale Domain eintragen
+  url: "https://gastro-kleindienst.de",
   description:
     "Gastronomieberatung in München & Umgebung: Ex-Küchenchef Mario Kleindienst (Spatenhaus, Augustiner, Kuffler) optimiert Kalkulation, Wareneinsatz, Speisekarte, Küche & Personal. Kostenfreies Erstgespräch.",
   locale: "de_DE",
   owner: {
     name: "Mario Kleindienst",
     role: "Inhaber & Gastronomieberater",
-    /** Portrait in /public ablegen und hier eintragen, z. B. "/mario-kleindienst.jpg" */
-    portrait: null as null | { src: string; alt: string },
+    /**
+     * Foto in /public ablegen und hier eintragen, z. B.
+     * { src: "/mario-kleindienst.jpg", alt: "…", width: 1448, height: 1086, focus: "58% 35%" }
+     * `focus` = Bildausschnitt (CSS object-position), damit die Person mittig bleibt.
+     */
+    portrait: null as null | { src: string; alt: string; width: number; height: number; focus: string },
     linkedin: "https://www.linkedin.com/in/mario-kleindienst-64324a213/",
     /** Ausbildungsbeginn – daraus wird "über 35 Jahre" berechnet. */
     careerStart: 1988,
   },
   contact: {
     email: "[kontakt@ihre-domain.de]",
-    phone: "[+49 000 0000000]",
+    phone: "+4915154609111",
     /** Anzeigeformat der Telefonnummer */
-    phoneDisplay: "[0000 0000000]",
+    phoneDisplay: "0151 54609111",
     region: "München & Umgebung",
   },
   /** Pflichtangaben nach § 5 DDG – bitte vollständig ausfüllen. */
@@ -35,9 +39,9 @@ export const site = {
     companyName: "Kleindienst Gastro Consulting",
     proprietor: "Mario Kleindienst",
     legalForm: "Einzelunternehmen", // TODO: Rechtsform prüfen (z. B. GmbH, UG)
-    street: "[Straße Hausnummer]",
-    postalCode: "[PLZ]",
-    city: "[Ort]",
+    street: "Hauserweg 5",
+    postalCode: "82061",
+    city: "Neuried",
     country: "Deutschland",
     /** Leer lassen, falls keine USt-IdNr. vorhanden ist (z. B. Kleinunternehmer). */
     vatId: "[DE000000000]",
@@ -86,7 +90,7 @@ export const services: readonly Service[] = [
     title: "Speisekarten-Engineering",
     summary:
       "Jedes Gericht muss sich seinen Platz verdienen. Wir analysieren Beliebtheit und Deckungsbeitrag und entwickeln eine Karte – auch saisonal –, die verkauft.",
-    points: ["Menü-Matrix-Analyse", "Sortiment straffen", "Saisonale Angebote"],
+    points: ["Beliebtheit & Deckungsbeitrag", "Sortiment straffen", "Saisonale Angebote"],
   },
   {
     title: "Küchenorganisation & HACCP",
@@ -115,22 +119,19 @@ export const services: readonly Service[] = [
 ]
 
 /**
- * Beruflicher Werdegang (Quelle: Lebenslauf 2015, Arbeitszeugnis Haus Kuffler 2020).
+ * Beruflicher Werdegang ab 2007 (Quellen: Lebenslauf 2015, Arbeitszeugnis Haus Kuffler 2020, Angaben der Familie).
  * Quelle für Spatenhaus: Abendzeitung München (Ess-Klasse, 2023).
  * TODO: Zeiträume nach 2020 prüfen/ergänzen.
  */
 export const career = [
-  { period: "ab 2023", role: "Küchenchef 1. OG", place: "Spatenhaus an der Oper, München", note: "Kuffler Gruppe" }, // TODO: Zeitraum prüfen
+  { period: "2025", role: "Planung & Durchführung der Gastronomie", place: "Paulaner Festzelt, Oktoberfest München" },
+  { period: "2023", role: "Küchenchef 1. OG", place: "Spatenhaus an der Oper, München", note: "Kuffler Gruppe" }, // TODO: Zeitraum prüfen
+  { period: "2021 – 2022", role: "Gastronomieplanung", place: "Rauschenberger Gastronomie, Motorworld München" },
   { period: "2016 – 2020", role: "Küchenchef", place: "Haus Kuffler, Flughafen München T2", note: "Mangostin Airport & Bagutta Pizza Culture" },
   { period: "2011 – 2016", role: "Küchenchef", place: "Zum Spöckmeier, München" },
   { period: "2010 – 2011", role: "Küchenchef", place: "Augustiner Bräustuben, München" },
   { period: "2008 – 2010", role: "Sous-Chef / Küchenchef", place: "Hotel Deutsche Eiche, Lochhausen" },
   { period: "2007 – 2008", role: "Küchenchef", place: "Mohrenplatz, Garmisch-Partenkirchen", note: "Neueröffnung" },
-  { period: "2000 – 2006", role: "Sous-Chef", place: "Restaurant Hannappel, Essen", note: "16 Punkte" },
-  { period: "1998 – 2000", role: "Küchenchef", place: "Zur Eierwies’n, Grünwald" },
-  { period: "1995 – 1998", role: "Sous-Chef", place: "Haxenbauer, München" },
-  { period: "1990 – 1995", role: "Jungkoch, Demi-Chef & Koch", place: "Ettal, Schwarzwald, Garmisch-Partenkirchen" },
-  { period: "1988 – 1990", role: "Ausbildung zum Koch", place: "Hotel NEWA, Dresden" },
 ] as const
 
 /**
@@ -187,6 +188,7 @@ export const audiences = [
   "Restaurants & gehobene Küche",
   "Hotels & Hotelgastronomie",
   "System- & Verkehrsgastronomie",
+  "Festzelte & Eventgastronomie",
   "Betriebs- & Gemeinschaftsverpflegung",
   "Gründer, Pächter & Investoren",
 ] as const

@@ -3,7 +3,7 @@ import { AudiencesAndPress } from "@/components/sections/audiences-press"
 import { Contact } from "@/components/sections/contact"
 import { Faq } from "@/components/sections/faq"
 import { Hero } from "@/components/sections/hero"
-import { MenuMatrix } from "@/components/sections/menu-matrix"
+import { PhotoBand } from "@/components/sections/photo-band"
 import { Process } from "@/components/sections/process"
 import { Region } from "@/components/sections/region"
 import { Services } from "@/components/sections/services"
@@ -15,8 +15,8 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structuredData()) }} />
       <Hero />
       <Services />
-      <MenuMatrix />
       <Process />
+      <PhotoBand />
       <About />
       <AudiencesAndPress />
       <Region />

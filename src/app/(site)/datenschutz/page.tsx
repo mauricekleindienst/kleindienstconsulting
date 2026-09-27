@@ -1,10 +1,12 @@
 import type { Metadata } from "next"
 import { LegalPage } from "@/components/legal-page"
 import { site } from "@/content/site"
+import { pageOpenGraph } from "@/lib/og"
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung",
   description: `Datenschutzerklärung von ${site.name} nach DSGVO.`,
+  ...pageOpenGraph("Datenschutzerklärung", "/datenschutz"),
   alternates: { canonical: "/datenschutz" },
 }
 

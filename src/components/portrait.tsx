@@ -15,6 +15,7 @@ export function Portrait() {
           fill
           sizes="(min-width: 1024px) 400px, 90vw"
           className="object-cover"
+          style={{ objectPosition: portrait.focus }}
         />
       ) : (
         <div className="grid h-full place-items-center text-linen">
