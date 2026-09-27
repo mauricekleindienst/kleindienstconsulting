@@ -23,17 +23,10 @@ export async function ogFonts() {
   ]
 }
 
-/** Bildmarke „Teller-K“ als SVG für Satori. */
-export function OgMark({ size, color = brand.linen, accent = brand.brassLight }: { size: number; color?: string; accent?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-      <circle cx="24" cy="24" r="22" stroke={color} strokeWidth="2" />
-      <path d="M16.5 35.5V12.5c3.6 1.4 4.6 5 4.6 9.5v13.5z" fill={color} />
-      <path d="M21.4 25 29 16" stroke={color} strokeWidth="3" strokeLinecap="round" />
-      <path d="m23.6 23.2 7.4 12" stroke={color} strokeWidth="3" strokeLinecap="round" />
-      <circle cx="31.6" cy="12.6" r="2.4" fill={accent} />
-    </svg>
-  )
+/** MK-Wappen (hell) als Data-URL für Satori. */
+export async function ogLogo() {
+  const file = await readFile(join(process.cwd(), "public/brand/mk-logo-linen.png"))
+  return `data:image/png;base64,${file.toString("base64")}`
 }
 
 /** Für Unterseiten, die eigene openGraph-Metadaten setzen (die überschreiben sonst das Bild). */

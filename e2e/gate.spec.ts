@@ -33,7 +33,8 @@ test.describe("Passwort-Schranke", () => {
     const image = await request.get("/opengraph-image")
     expect(image.status()).toBe(200)
     expect(image.headers()["content-type"]).toContain("image/png")
-    expect((await request.get("/apple-icon")).status()).toBe(200)
+    expect((await request.get("/apple-icon.png")).status()).toBe(200)
+    expect((await request.get("/icon.png")).status()).toBe(200)
   })
 
   test("Suchmaschinen werden ausgesperrt", async ({ page, request }) => {

@@ -67,7 +67,7 @@ Werte in `[eckigen Klammern]` in `src/content/site.ts` sind Platzhalter:
 - [ ] **USt-IdNr.** eintragen – oder `vatId` leeren (z. B. Kleinunternehmer)
 - [ ] **Handelsregister** nur bei Eintragung (`register`)
 - [ ] **Domain** in `site.url` setzen (wirkt auf Canonical, Sitemap, Open Graph, Schema.org)
-- [ ] **Portrait**: professionelles Foto als `public/mario-kleindienst.jpg` ablegen und in `owner.portrait` eintragen
+- [x] **Portrait**: `public/mario-kleindienst.jpg`
 - [ ] **Werdegang nach 2020** prüfen (Spatenhaus-Zeitraum ist aus Presseberichten abgeleitet)
 - [ ] **Zitat aus dem Arbeitszeugnis**: Veröffentlichung mit Haus Kuffler abstimmen – oder entfernen
 - [ ] **Datenschutzerklärung** und Impressum juristisch prüfen lassen (die Texte sind sorgfältige Vorlagen, keine Rechtsberatung)
@@ -91,8 +91,15 @@ Werte in `[eckigen Klammern]` in `src/content/site.ts` sind Platzhalter:
 
 ## Marke
 
-Bildmarke „Teller-K“ (`src/components/logo-mark.tsx`, Datei: `public/brand/kleindienst-bildmarke.svg`):
-Tellerrand als Bühne des Gastronomen, K-Stamm als Kochmesser-Klinge, Messing-Punkt als Garnitur.
+MK-Wappen mit Kochmütze/Krone: Original `public/brand/mk-logo.png` (schwarz, transparent).
+Eingefärbte Varianten und Icons erzeugt `node scripts/brand.mjs` (nach Logo-Änderung einmal ausführen):
+
+| Datei | Verwendung |
+|---|---|
+| `public/brand/mk-logo-ink.png` | Header, Zugangsseite (Schiefer auf Hell) |
+| `public/brand/mk-logo-linen.png` | Footer, Vorschaubild (Leinen auf Dunkel) |
+| `public/brand/mk-logo-ink-gross.png` | Druck, Dokumente, Social Media |
+| `src/app/icon.png`, `src/app/apple-icon.png` | Favicon, iPhone-Homescreen (Krone + MK auf Flaschengrün) |
 
 Farben: Leinen `#F6F6F1` · Schiefer `#141916` · Flaschengrün `#1E3A2F` · Messing `#7C5E25` / `#D9BF86`
 Schriften: Bricolage Grotesque (Überschriften), Geist (Text), Geist Mono (nur Küchenbon)

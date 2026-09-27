@@ -26,11 +26,12 @@ const PUBLIC_PATHS = [
   /^\/zugang(?:\.html|\.txt)?$/,
   /^\/zugang\//,
   /^\/_next\/static\//,
-  /^\/icon\.svg$/,
+  /^\/icon\.png$/,
   /^\/favicon\.ico$/,
   // Für Link-Vorschauen (WhatsApp, LinkedIn, iMessage …) und Homescreen-Icons
   /^\/opengraph-image$/,
-  /^\/apple-icon$/,
+  /^\/apple-icon\.png$/,
+  /^\/brand\//,
   /^\/manifest\.webmanifest$/,
 ]
 

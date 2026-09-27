@@ -299,9 +299,9 @@ test.describe("SEO-Dateien", () => {
     const xml = await sitemap.text()
     for (const path of ["/impressum", "/datenschutz"]) expect(xml).toContain(path)
 
-    const icon = await request.get("/icon.svg")
+    const icon = await request.get("/icon.png")
     expect(icon.status()).toBe(200)
-    expect((await request.get("/apple-icon")).headers()["content-type"]).toContain("image/png")
+    expect((await request.get("/apple-icon.png")).headers()["content-type"]).toContain("image/png")
     const manifest = await (await request.get("/manifest.webmanifest")).json()
     expect(manifest.name).toBe("Kleindienst Gastro Consulting")
 

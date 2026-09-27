@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { LogoMark } from "@/components/logo-mark"
+import { Logo } from "@/components/logo"
 import { Container } from "@/components/ui/container"
 import { operator } from "@/content/operator"
 
@@ -15,13 +15,7 @@ export default function ZugangLayout({ children }: Readonly<{ children: React.Re
     <div className="flex min-h-dvh flex-col">
       <header className="border-b border-line">
         <Container className="flex h-18 items-center">
-          <Link href="/zugang" className="inline-flex min-h-11 items-center gap-3" translate="no">
-            <LogoMark className="size-10 shrink-0" />
-            <span className="flex flex-col leading-none">
-              <span className="font-display text-[1.4rem] font-bold">Kleindienst</span>
-              <span className="mt-1 text-[0.8rem] text-current/65">Gastro Consulting München</span>
-            </span>
-          </Link>
+          <Logo href="/zugang" />
         </Container>
       </header>
       <main id="inhalt" className="flex-1">

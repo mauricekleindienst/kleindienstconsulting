@@ -12,7 +12,7 @@ export function SiteFooter() {
     <footer className="bg-ink pb-[calc(5.5rem+env(safe-area-inset-bottom))] text-linen md:pb-0">
       <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
-          <Logo accent="var(--color-brass-light)" />
+          <Logo variant="linen" />
           <p className="mt-6 max-w-sm text-linen/70">
             Gastronomieberatung aus der Küche heraus, für Betriebe in {site.contact.region}.
           </p>
