@@ -1,7 +1,7 @@
 # Kleindienst Gastro Consulting
 
 Website für die Gastronomieberatung von Mario Kleindienst in München & Umgebung.
-Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript · statischer Export auf Cloudflare Pages.
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript · statischer Export als Cloudflare Worker (Static Assets).
 
 ## Entwicklung
 
@@ -10,14 +10,15 @@ npm install
 npm run dev      # http://localhost:3000
 npm run lint
 npm run build    # Statischer Export nach ./out
-npm run preview  # Build + lokales Cloudflare Pages inkl. Passwortschutz (http://localhost:8788)
+npm run preview  # Build + lokaler Worker inkl. Passwortschutz (http://localhost:8788, Passwort: vorschau)
+npm run deploy   # Build + wrangler deploy
 npm run typecheck
 ```
 
 ### Tests (End-to-End)
 
 ```bash
-npm run test:e2e                          # Build + Playwright gegen lokales Cloudflare Pages (offen + mit Passwort)
+npm run test:e2e                          # Build + Playwright gegen lokalen Worker (offen + mit Passwort)
 RELEASE=1 npx playwright test -g Livegang # Vor dem Livegang: schlägt fehl, solange [Platzhalter] existieren
 ```
 
@@ -27,20 +28,23 @@ FAQ per Maus/Tastatur, Skip-Link, mobiles Menü (Fokus, Escape, `inert`, Resize)
 Touch-Ziele ≥ 44 px, kein horizontales Scrollen, keine Cookies und keine Drittanbieter-Requests,
 JSON-LD, robots/sitemap/OG-Bild, Sicherheits-Header, Pflichtangaben in Impressum und Datenschutz.
 
-## Cloudflare Pages
+## Cloudflare (Workers Builds)
+
+Konfiguration steht in [`wrangler.jsonc`](wrangler.jsonc): Der statische Export `./out` wird als
+Static Assets ausgeliefert, davor läuft der Worker [`worker/index.ts`](worker/index.ts) (Passwortschutz).
 
 | Einstellung | Wert |
 |---|---|
 | Build command | `npm run build` |
-| Build output directory | `out` |
-| Root directory | `/` (Repository-Wurzel, damit `functions/` erkannt wird) |
-| Node-Version | Umgebungsvariable `NODE_VERSION` = `22` |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` |
 
 ### Passwortschutz (Vorschau)
 
-Die gesamte Website ist nur mit Passwort erreichbar, solange in Cloudflare
-**Settings → Variables and Secrets** die Variable **`SITE_PASSWORD`** (Typ *Secret*) gesetzt ist –
-für *Production* und *Preview*. Danach einmal neu deployen.
+Die gesamte Website ist nur mit Passwort erreichbar, solange im Worker unter
+**Workers & Pages → kleindienstconsulting → Settings → Variables and Secrets** das Secret
+**`SITE_PASSWORD`** gesetzt ist (alternativ: `npx wrangler secret put SITE_PASSWORD`).
+Secrets wirken sofort, ohne neues Deployment.
 
 - Öffentlich sind nur `/zugang` sowie Impressum und Datenschutz des Betreibers (Mousewerk) unter `/zugang/…`.
 - Alle anderen Seiten, Daten (`*.txt`), Bilder, Sitemap: ohne Passwort gesperrt; `robots.txt` sperrt Suchmaschinen, jede Antwort trägt `X-Robots-Tag: noindex`.
@@ -48,7 +52,7 @@ für *Production* und *Preview*. Danach einmal neu deployen.
 - Abmelden: `/zugang/abmelden`.
 - Empfehlung: in Cloudflare unter *Security → WAF → Rate limiting rules* POST-Anfragen auf `/zugang` begrenzen (z. B. 10 pro Minute und IP).
 
-**Livegang:** `SITE_PASSWORD` löschen und neu deployen – die Website ist sofort öffentlich und indexierbar.
+**Livegang:** Secret `SITE_PASSWORD` löschen – die Website ist sofort öffentlich und indexierbar.
 
 ## Inhalte pflegen
 
@@ -68,7 +72,7 @@ Werte in `[eckigen Klammern]` in `src/content/site.ts` sind Platzhalter:
 - [ ] **Zitat aus dem Arbeitszeugnis**: Veröffentlichung mit Haus Kuffler abstimmen – oder entfernen
 - [ ] **Datenschutzerklärung** und Impressum juristisch prüfen lassen (die Texte sind sorgfältige Vorlagen, keine Rechtsberatung)
 - [ ] Mit Cloudflare den **Auftragsverarbeitungsvertrag (DPA)** abschließen (Dashboard → Manage Account → Configurations → Data Processing Addendum)
-- [ ] **`SITE_PASSWORD` entfernen** und neu deployen
+- [ ] Secret **`SITE_PASSWORD` entfernen**
 
 ## Rechtliches – umgesetzt
 

@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Statischer Next.js-Export (npm run build → ./out) als Worker Static Assets.
+  // Der Worker (worker/index.ts) läuft vor jeder Anfrage und setzt den Passwortschutz um.
+  "name": "kleindienstconsulting",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-09-25",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "observability": { "enabled": true }
+}

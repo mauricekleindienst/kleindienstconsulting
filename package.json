@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "next build && playwright test",
-    "typecheck": "tsc --noEmit && tsc --noEmit -p functions",
-    "preview": "next build && wrangler pages dev out --port 8788"
+    "typecheck": "tsc --noEmit && tsc --noEmit -p worker",
+    "preview": "next build && wrangler dev --port 8788 --var SITE_PASSWORD:vorschau",
+    "deploy": "next build && wrangler deploy"
   },
   "dependencies": {
     "next": "16.3.6",

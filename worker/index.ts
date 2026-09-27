@@ -1,15 +1,17 @@
 /**
- * Passwortschutz für die gesamte Website (Cloudflare Pages Function).
+ * Cloudflare Worker vor dem statischen Export (./out, Binding ASSETS) mit
+ * Passwortschutz für die gesamte Website.
  *
- * Aktiv, sobald in Cloudflare die Umgebungsvariable SITE_PASSWORD gesetzt ist
- * (Pages → Settings → Variables and Secrets, Typ „Secret“). Ohne die Variable
- * ist die Website öffentlich – kein neues Deployment nötig.
+ * Aktiv, sobald im Worker das Secret SITE_PASSWORD gesetzt ist
+ * (Workers & Pages → kleindienstconsulting → Settings → Variables and Secrets).
+ * Ohne das Secret ist die Website öffentlich.
  *
  * Öffentlich bleiben nur die Zugangsseite (/zugang, inkl. Impressum und
  * Datenschutz des Betreibers) und die statischen Build-Dateien.
  */
 
 interface Env {
+  ASSETS: Fetcher
   SITE_PASSWORD?: string
 }
 
@@ -79,7 +81,13 @@ function privately(response: Response, path: string) {
   return copy
 }
 
-export const onRequest: PagesFunction<Env> = async ({ request, env, next }) => {
+export default {
+  fetch(request, env) {
+    return gate(request, env, () => env.ASSETS.fetch(request))
+  },
+} satisfies ExportedHandler<Env>
+
+async function gate(request: Request, env: Env, next: () => Promise<Response>) {
   const password = env.SITE_PASSWORD
   if (!password) return next()
 
