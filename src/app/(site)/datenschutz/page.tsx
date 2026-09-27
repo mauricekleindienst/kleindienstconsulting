@@ -49,12 +49,12 @@ export default function DatenschutzPage() {
       <section>
         <h2>3. Hosting und Server-Logfiles</h2>
         <p>
-          Diese Website wird bei der Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA
-          gehostet. Beim Aufruf der Website werden durch den Hoster automatisch Informationen in
-          sogenannten Server-Logfiles erfasst, die Ihr Browser übermittelt:
+          Diese Website wird über Cloudflare Pages der Cloudflare, Inc., 101 Townsend St., San
+          Francisco, CA 94107, USA bereitgestellt. Beim Aufruf der Website verarbeitet Cloudflare
+          automatisch Informationen, die Ihr Browser übermittelt:
         </p>
         <ul>
-          <li>IP-Adresse (gekürzt bzw. nur kurzfristig gespeichert)</li>
+          <li>IP-Adresse</li>
           <li>Datum und Uhrzeit der Anfrage</li>
           <li>aufgerufene Seite bzw. Datei</li>
           <li>Referrer-URL</li>
@@ -62,13 +62,13 @@ export default function DatenschutzPage() {
         </ul>
         <p>
           Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes
-          Interesse liegt in der sicheren und fehlerfreien Bereitstellung der Website. Mit dem Hoster
-          besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Vercel ist unter dem
+          Interesse liegt in der sicheren und fehlerfreien Bereitstellung der Website. Mit Cloudflare
+          besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Cloudflare ist unter dem
           EU-US Data Privacy Framework zertifiziert; die Übermittlung in die USA stützt sich auf den
           Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) sowie ergänzend auf
           Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO). Weitere Informationen:{" "}
-          <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
-            Datenschutzerklärung von Vercel
+          <a href="https://www.cloudflare.com/de-de/privacypolicy/" target="_blank" rel="noopener noreferrer">
+            Datenschutzerklärung von Cloudflare
           </a>
           .
         </p>
@@ -77,9 +77,15 @@ export default function DatenschutzPage() {
       <section>
         <h2>4. Cookies und Endgerätezugriff</h2>
         <p>
-          Diese Website setzt keine Cookies und greift nicht auf Informationen in Ihrem Endgerät zu,
-          die nicht für die Bereitstellung des ausdrücklich gewünschten Dienstes unbedingt
-          erforderlich sind (§ 25 Abs. 2 TDDDG). Ein Cookie-Banner ist daher nicht erforderlich.
+          Diese Website setzt keine Analyse-, Marketing- oder Tracking-Cookies und greift nicht auf
+          Informationen in Ihrem Endgerät zu, die nicht für die Bereitstellung des ausdrücklich
+          gewünschten Dienstes unbedingt erforderlich sind (§ 25 Abs. 2 Nr. 2 TDDDG). Ein Cookie-Banner
+          ist daher nicht erforderlich.
+        </p>
+        <p>
+          Solange sich die Website in der passwortgeschützten Vorschau befindet, wird nach Eingabe des
+          Passworts ein technisch notwendiges Zugangs-Cookie („kgc_zugang“, Laufzeit 30 Tage) gesetzt.
+          Es enthält keine personenbezogenen Angaben.
         </p>
       </section>
 
@@ -107,7 +113,7 @@ export default function DatenschutzPage() {
       <section>
         <h2>7. Externe Links</h2>
         <p>
-          Unsere Website enthält Links zu externen Angeboten (z. B. LinkedIn, Abendzeitung München).
+          Unsere Website enthält Links zu externen Angeboten (z. B. LinkedIn, Abendzeitung München, Mousewerk).
           Erst wenn Sie einen solchen Link anklicken, werden Daten an den jeweiligen Anbieter
           übertragen. Für die dortige Datenverarbeitung ist ausschließlich der jeweilige Anbieter
           verantwortlich.

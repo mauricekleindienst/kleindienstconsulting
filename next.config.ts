@@ -1,18 +1,11 @@
 import type { NextConfig } from "next"
 
-const securityHeaders = [
-  { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "X-Frame-Options", value: "DENY" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
-]
-
+// Statischer Export für Cloudflare Pages (Ausgabe in ./out).
+// Sicherheits-Header stehen in public/_headers, der Passwortschutz in functions/_middleware.ts.
 const nextConfig: NextConfig = {
+  output: "export",
   poweredByHeader: false,
-  async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }]
-  },
+  images: { unoptimized: true },
 }
 
 export default nextConfig

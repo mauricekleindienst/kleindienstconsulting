@@ -3,7 +3,8 @@ import { Container } from "@/components/ui/container"
 
 export default function NotFound() {
   return (
-    <Container className="flex min-h-[60dvh] flex-col items-start justify-center py-24">
+    <main id="inhalt">
+      <Container className="flex min-h-[80dvh] flex-col items-start justify-center py-24">
       <p className="font-display text-8xl font-extrabold text-brass">404</p>
       <h1 className="mt-6 font-display text-4xl font-bold">Dieses Gericht steht nicht auf der Karte.</h1>
       <p className="mt-4 max-w-md text-lg text-muted">
@@ -13,5 +14,6 @@ export default function NotFound() {
         Zur Startseite
       </ButtonLink>
     </Container>
+    </main>
   )
 }
