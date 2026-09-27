@@ -73,7 +73,7 @@ test.describe("Passwort-Schranke", () => {
 
     await page.getByRole("link", { name: "Datenschutz" }).click()
     await expect(page).toHaveURL("/zugang/datenschutz")
-    await expect(page.getByText("Cloudflare Pages").first()).toBeVisible()
+    await expect(page.getByText("Cloudflare Workers").first()).toBeVisible()
     await expect(page.getByText("kgc_zugang").first()).toBeVisible()
   })
 

@@ -51,7 +51,7 @@ export default function DatenschutzPage() {
       <section>
         <h2>3. Hosting und Server-Logfiles</h2>
         <p>
-          Diese Website wird über Cloudflare Pages der Cloudflare, Inc., 101 Townsend St., San
+          Diese Website wird über Cloudflare Workers der Cloudflare, Inc., 101 Townsend St., San
           Francisco, CA 94107, USA bereitgestellt. Beim Aufruf der Website verarbeitet Cloudflare
           automatisch Informationen, die Ihr Browser übermittelt:
         </p>

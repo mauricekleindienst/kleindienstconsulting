@@ -1,7 +1,7 @@
 import type { NextConfig } from "next"
 
-// Statischer Export für Cloudflare Pages (Ausgabe in ./out).
-// Sicherheits-Header stehen in public/_headers, der Passwortschutz in functions/_middleware.ts.
+// Statischer Export für Cloudflare Workers Static Assets (Ausgabe in ./out).
+// Sicherheits-Header stehen in public/_headers, der Passwortschutz in worker/index.ts.
 const nextConfig: NextConfig = {
   output: "export",
   poweredByHeader: false,

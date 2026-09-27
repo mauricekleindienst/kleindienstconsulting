@@ -48,7 +48,7 @@ export const site = {
   legal: {
     companyName: "Kleindienst Gastro Consulting",
     proprietor: "Mario Kleindienst",
-    legalForm: "Einzelunternehmen", // TODO: Rechtsform prüfen (z. B. GmbH, UG)
+    legalForm: "Einzelunternehmen",
     street: "Hauserweg 5",
     postalCode: "82061",
     city: "Neuried",
@@ -166,14 +166,6 @@ export const press = [
     href: "https://www.abendzeitung-muenchen.de/muenchen/essenundtrinken/ess-klasse/die-ess-klasse-im-spatenhaus-wird-verlaengert-art-881240",
   },
 ] as const
-
-/** Referenz-Zitat aus dem Arbeitszeugnis. TODO: Veröffentlichung mit Haus Kuffler abstimmen. */
-export const testimonial = {
-  quote:
-    "Mit sehr großem Engagement und Ideenvielfalt leitete Herr Kleindienst die ihm anvertraute Position stets selbstständig und kostenbewusst. Durch seine hohe Einsatzbereitschaft und Flexibilität trug er maßgeblich zum hohen Erfolg unseres Restaurants bei.",
-  source: "Haus Kuffler GmbH & Co. KG",
-  context: "Arbeitszeugnis, Küchenchef am Flughafen München",
-} as const
 
 export const steps = [
   {

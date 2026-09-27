@@ -29,7 +29,7 @@ export default function ZugangDatenschutzPage() {
       <section>
         <h2>2. Hosting und Server-Logfiles</h2>
         <p>
-          Die Website wird über Cloudflare Pages der Cloudflare, Inc., 101 Townsend St., San Francisco,
+          Die Website wird über Cloudflare Workers der Cloudflare, Inc., 101 Townsend St., San Francisco,
           CA 94107, USA bereitgestellt. Beim Aufruf verarbeitet Cloudflare technisch notwendige Daten
           wie IP-Adresse, Datum und Uhrzeit, aufgerufene Adresse, Referrer und Browserkennung, um die
           Seite auszuliefern und vor Angriffen zu schützen.

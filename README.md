@@ -70,7 +70,8 @@ Werte in `[eckigen Klammern]` in `src/content/site.ts` sind Platzhalter:
 - [x] **Domain**: `https://gastro-kleindienst.de`
 - [x] **Portrait**: `public/mario-kleindienst.jpg`
 - [x] **Werdegang** bestätigt (2007 bis 2025, plus Restaurant Hannappel)
-- [ ] **Zitat aus dem Arbeitszeugnis**: Veröffentlichung mit Haus Kuffler abstimmen – oder entfernen
+- [x] **Rechtsform**: Einzelunternehmen
+- [x] **Zitat aus dem Arbeitszeugnis**: entfernt
 - [ ] **Datenschutzerklärung** und Impressum juristisch prüfen lassen (die Texte sind sorgfältige Vorlagen, keine Rechtsberatung)
 - [ ] Mit Cloudflare den **Auftragsverarbeitungsvertrag (DPA)** abschließen (Dashboard → Manage Account → Configurations → Data Processing Addendum)
 - [ ] Secret **`SITE_PASSWORD` entfernen**

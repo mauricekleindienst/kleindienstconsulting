@@ -5,7 +5,7 @@ import { useId } from "react"
 
 /**
  * Passwortformular. Wird ohne JavaScript per normalem POST an /zugang geschickt;
- * die Prüfung übernimmt die Cloudflare Pages Function (functions/_middleware.ts).
+ * die Prüfung übernimmt der Cloudflare Worker (worker/index.ts).
  */
 export function GateForm() {
   const params = useSearchParams()

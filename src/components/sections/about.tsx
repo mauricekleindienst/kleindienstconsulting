@@ -1,4 +1,4 @@
-import { career, principles, site, testimonial } from "@/content/site"
+import { career, principles, site } from "@/content/site"
 import { yearsInTrade } from "@/lib/experience"
 import { LinkedIn } from "../ui/icons"
 import { Section, SectionHeader, SectionTitle } from "../ui/section"
@@ -52,15 +52,6 @@ export function About() {
               </li>
             ))}
           </ul>
-
-          <figure className="mt-14 border-l-4 border-brass pl-6 sm:pl-8">
-            <blockquote className="text-xl leading-relaxed sm:text-2xl">
-              <p>„{testimonial.quote}“</p>
-            </blockquote>
-            <figcaption className="mt-4 text-muted">
-              <span className="font-semibold text-ink">{testimonial.source}</span>, {testimonial.context}
-            </figcaption>
-          </figure>
 
           <div className="mt-16">
             <h3 className="font-display text-2xl font-bold">Werdegang</h3>
