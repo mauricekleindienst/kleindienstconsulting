@@ -21,7 +21,7 @@ export function MobileActionBar() {
           className="flex min-h-12 items-center justify-center gap-2 rounded-md bg-green font-medium text-linen"
         >
           <Mail className="size-5" />
-          E-Mail schreiben
+          E-Mail<span className="max-[359px]:hidden">&nbsp;schreiben</span>
         </a>
       </div>
     </nav>

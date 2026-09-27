@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright"
 import { expect, test, type Page } from "@playwright/test"
 
-const pages = ["/", "/impressum", "/datenschutz"] as const
+const pages = ["/", "/impressum", "/datenschutz", "/leistungen/speisekarte-optimieren"] as const
 
 /** Sammelt Konsolenfehler und fehlgeschlagene Requests einer Seite. */
 function trackErrors(page: Page) {
@@ -242,7 +242,7 @@ test.describe("Mobil", () => {
     const bar = page.getByRole("navigation", { name: "Schnellkontakt" })
     await expect(bar).toBeVisible()
     await expect(bar.getByRole("link", { name: "Anrufen" })).toHaveAttribute("href", /^tel:/)
-    await expect(bar.getByRole("link", { name: "E-Mail schreiben" })).toHaveAttribute("href", /^mailto:/)
+    await expect(bar.getByRole("link", { name: /^E-Mail/ })).toHaveAttribute("href", /^mailto:/)
     await page.evaluate(() => {
       document.documentElement.style.scrollBehavior = "auto"
       window.scrollTo(0, document.body.scrollHeight)

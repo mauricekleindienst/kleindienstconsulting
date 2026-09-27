@@ -1,4 +1,6 @@
+import Link from "next/link"
 import { services } from "@/content/site"
+import { serviceByTitle } from "@/content/services"
 import { Section, SectionHeader, SectionLead, SectionTitle } from "../ui/section"
 
 export function Services() {
@@ -6,7 +8,7 @@ export function Services() {
     <Section id="leistungen" tone="deep" aria-labelledby="leistungen-title">
       <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
         <SectionHeader className="lg:sticky lg:top-28 lg:self-start">
-          <SectionTitle id="leistungen-title">Wobei ich Sie unterstütze</SectionTitle>
+          <SectionTitle id="leistungen-title">Gastronomieberatung: Wobei ich Sie unterstütze</SectionTitle>
           <SectionLead>
             Einzelne Baustelle oder komplette Neuaufstellung: Sie bekommen genau die Hilfe, die Ihr
             Betrieb gerade braucht, und nicht mehr.
@@ -19,6 +21,14 @@ export function Services() {
               <h3 className="font-display text-2xl font-bold">{service.title}</h3>
               <div>
                 <p className="leading-relaxed text-ink-soft">{service.summary}</p>
+                {serviceByTitle(service.title) ? (
+                  <Link
+                    href={`/leistungen/${serviceByTitle(service.title)!.slug}`}
+                    className="mt-4 inline-flex min-h-11 items-center gap-2 font-medium text-green underline decoration-brass underline-offset-4 hover:decoration-2"
+                  >
+                    Mehr zu {service.title}
+                  </Link>
+                ) : null}
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {service.points.map((point) => (
                     <li key={point} className="rounded-md bg-linen px-3 py-1 text-sm text-ink-soft">

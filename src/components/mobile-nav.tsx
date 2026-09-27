@@ -3,8 +3,8 @@
 import Link from "next/link"
 import { useEffect, useId, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { navigation } from "@/content/site"
-import { Close, Menu } from "./ui/icons"
+import { navigation, site } from "@/content/site"
+import { Close, LinkedIn, Menu } from "./ui/icons"
 
 /** Bereiche hinter dem geöffneten Menü – werden für Tastatur und Screenreader gesperrt. */
 const BACKGROUND = "main, footer, nav[aria-label='Schnellkontakt']"
@@ -29,7 +29,7 @@ export function MobileNav() {
       toggleRef.current?.focus()
     }
     // Beim Wechsel auf Desktop-Breite schließen, sonst bliebe das Scrollen gesperrt
-    const desktop = window.matchMedia("(min-width: 48rem)")
+    const desktop = window.matchMedia("(min-width: 64rem)")
     const onResize = () => desktop.matches && setOpen(false)
 
     document.addEventListener("keydown", onKey)
@@ -45,7 +45,7 @@ export function MobileNav() {
   const close = () => setOpen(false)
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         ref={toggleRef}
         type="button"
@@ -64,7 +64,7 @@ export function MobileNav() {
             <div
               ref={panelRef}
               id={panelId}
-              className="fixed inset-x-0 top-[calc(4.5rem+env(safe-area-inset-top))] bottom-0 z-50 overflow-y-auto overscroll-contain bg-linen md:hidden"
+              className="fixed inset-x-0 top-[calc(4.5rem+env(safe-area-inset-top))] bottom-0 z-50 overflow-y-auto overscroll-contain bg-linen lg:hidden"
             >
               <nav
                 aria-label="Mobile Navigation"
@@ -90,6 +90,16 @@ export function MobileNav() {
                 >
                   Erstgespräch vereinbaren
                 </Link>
+                <a
+                  href={site.owner.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 flex min-h-14 items-center justify-center gap-2 rounded-md border border-ink/25 font-medium"
+                >
+                  <LinkedIn className="size-5" />
+                  LinkedIn
+                  <span className="sr-only">(öffnet in neuem Tab)</span>
+                </a>
               </nav>
             </div>,
             document.body,

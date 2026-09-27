@@ -1,3 +1,4 @@
+import { serviceByTitle } from "@/content/services"
 import { faqs, serviceArea, services, site } from "@/content/site"
 
 /** Schema.org-Daten für lokale Suche (Google Business-Rich-Results) und FAQ. */
@@ -13,7 +14,10 @@ export function structuredData() {
     name: site.name,
     description: site.description,
     url: site.url,
-    image: `${site.url}/opengraph-image`,
+    image: [`${site.url}/mario-kleindienst.jpg`, `${site.url}/opengraph-image`],
+    logo: `${site.url}/brand/mk-logo-ink-gross.png`,
+    geo: { "@type": "GeoCoordinates", latitude: site.geo.latitude, longitude: site.geo.longitude },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${site.geo.latitude},${site.geo.longitude}`,
     email: real(site.contact.email),
     telephone: real(site.contact.phone),
     priceRange: "€€",
@@ -34,7 +38,12 @@ export function structuredData() {
       name: "Leistungen der Gastronomieberatung",
       itemListElement: services.map((service) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: service.title, description: service.summary },
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.summary,
+          url: serviceByTitle(service.title) ? `${site.url}/leistungen/${serviceByTitle(service.title)!.slug}` : undefined,
+        },
       })),
     },
   }
@@ -44,6 +53,8 @@ export function structuredData() {
     "@id": `${site.url}/#owner`,
     name: site.owner.name,
     jobTitle: site.owner.role,
+    image: `${site.url}/mario-kleindienst.jpg`,
+    hasOccupation: { "@type": "Occupation", name: "Gastronomieberater", occupationLocation: { "@type": "City", name: "München" } },
     worksFor: { "@id": `${site.url}/#business` },
     sameAs: [site.owner.linkedin],
     knowsAbout: [

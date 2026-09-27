@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Gastronomieberatung München & Umgebung | Kleindienst Gastro Consulting",
+    default: "Gastronomieberatung München | Kleindienst Gastro Consulting",
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   authors: [{ name: site.owner.name }],
   keywords: [
     "Gastronomieberatung München",
+    "Gastronomieberater München",
     "Gastro Consulting München",
     "Restaurantberatung München",
     "Gastronomieberater Oberbayern",
@@ -40,13 +41,14 @@ export const metadata: Metadata = {
     "HACCP Beratung",
     "Neueröffnung Restaurant München",
   ],
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", languages: { "de-DE": "/" } },
+  ...(site.googleSiteVerification ? { verification: { google: site.googleSiteVerification } } : {}),
   openGraph: {
     type: "website",
     locale: site.locale,
     url: "/",
     siteName: site.name,
-    title: "Gastronomieberatung München & Umgebung | Kleindienst Gastro Consulting",
+    title: "Gastronomieberatung München | Kleindienst Gastro Consulting",
     description: site.description,
   },
   twitter: { card: "summary_large_image" },

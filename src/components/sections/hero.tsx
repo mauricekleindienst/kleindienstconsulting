@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { services, site } from "@/content/site"
 import { yearsInTrade } from "@/lib/experience"
 import { ButtonLink } from "../ui/button-link"
@@ -10,47 +11,84 @@ const houses = [
   "Kuffler am Flughafen",
   "Augustiner Bräustuben",
   "Zum Spöckmeier",
+  "Restaurant Hannappel",
 ] as const
 
 export function Hero() {
   const years = yearsInTrade()
 
+  // Konkrete Belege aus dem Werdegang statt allgemeiner Versprechen
+  const proof = [
+    { value: `${years}+ Jahre`, label: "in der Gastronomie" },
+    { value: "Wiesn 2025", label: "Paulaner Festzelt" },
+    { value: "16 Punkte", label: "Restaurant Hannappel" },
+  ] as const
+
   return (
     <section className="overflow-hidden">
-      <Container className="grid gap-16 pt-12 pb-20 sm:pt-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12 lg:pt-20 lg:pb-24">
-        <div className="flex flex-col justify-center">
+      <Container className="grid gap-14 pt-12 pb-16 sm:pt-16 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:gap-12 lg:pt-20 lg:pb-20">
+        <div>
           <h1>
             <span className="block text-lg font-medium text-brass">Gastronomieberatung in München</span>
             <span className="mt-4 block font-display text-display-xl font-extrabold">
               Gastronomie, die sich rechnet.
             </span>
           </h1>
-          <p className="mt-8 max-w-[34rem] text-lg leading-relaxed text-ink-soft sm:text-xl">
-            {site.owner.name} stand über {years} Jahre als Koch und Küchenchef am Pass. Heute sorgt er
-            dafür, dass in Ihrem Betrieb Kalkulation, Karte und Küche zusammenpassen und am Monatsende
-            mehr übrig bleibt.
+          <p className="mt-8 max-w-[36rem] text-lg leading-relaxed text-ink-soft sm:text-xl">
+            Beratung vom Küchenchef für Restaurants, Wirtshäuser, Hotels und Festzelte: Kalkulation,
+            Karte, Küche und Team so aufstellen, dass am Monatsende mehr übrig bleibt.
           </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+
+          <dl className="mt-8 grid max-w-[36rem] grid-cols-3 gap-x-4 border-y border-line py-5 sm:gap-x-6">
+            {proof.map((item) => (
+              <div key={item.value} className="flex flex-col-reverse justify-end">
+                <dt className="mt-0.5 text-xs leading-snug text-muted sm:text-sm">{item.label}</dt>
+                <dd className="font-display text-base font-bold min-[400px]:text-lg sm:text-xl">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/#kontakt">Kostenfreies Erstgespräch</ButtonLink>
             <ButtonLink href="/#leistungen" variant="secondary">
               Leistungen ansehen
             </ButtonLink>
           </div>
 
-          <div className="mt-14 border-t border-line pt-6">
-            <p className="text-sm text-muted">Küchen und Gastronomie geführt unter anderem in</p>
-            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 font-display text-lg font-semibold text-ink-soft">
-              {houses.map((house) => (
-                <li key={house} translate="no">
-                  {house}
-                </li>
-              ))}
-            </ul>
+          <div className="mt-8 flex items-center gap-4">
+            <Image
+              src="/mario-kleindienst-portrait.jpg"
+              alt=""
+              width={192}
+              height={192}
+              priority
+              className="size-14 shrink-0 rounded-full object-cover ring-2 ring-sheet"
+            />
+            <p className="text-sm leading-snug text-muted">
+              <span className="block font-semibold text-ink" translate="no">
+                {site.owner.name}
+              </span>
+              Ihr Ansprechpartner. Antwort innerhalb von zwei Werktagen.
+            </p>
           </div>
         </div>
 
         <Bon />
       </Container>
+
+      {/* Stationen als durchlaufendes Band */}
+      <div className="border-y border-line bg-linen-deep">
+        <Container className="flex flex-col gap-3 py-6 lg:flex-row lg:items-baseline lg:gap-8">
+          <p className="shrink-0 text-sm text-muted">Küchen und Gastronomie geführt unter anderem in</p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-1 font-display text-lg font-semibold text-ink-soft">
+            {houses.map((house) => (
+              <li key={house} translate="no">
+                {house}
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </div>
     </section>
   )
 }
@@ -61,10 +99,17 @@ function Bon() {
     <figure className="relative mx-auto w-full max-w-[22rem] lg:mr-0">
       {/* Bondrucker-Schlitz */}
       <div aria-hidden className="relative z-10 h-5 rounded-md bg-ink shadow-[inset_0_-4px_0_rgb(255_255_255/0.08)]" />
-      <div className="-mt-2 px-3">
-        <div className="animate-print bon-edge bg-sheet px-6 pt-8 pb-6 font-mono text-[0.84rem] leading-relaxed text-ink shadow-[0_24px_40px_-24px_rgb(20_25_22/0.45)]">
+      <div className="-mt-2 origin-top rotate-[1.5deg] px-3">
+        <div className="animate-print bon-edge bg-sheet px-6 pt-6 pb-6 font-mono text-[0.84rem] leading-relaxed text-ink shadow-[0_24px_40px_-24px_rgb(20_25_22/0.45)]">
           <div className="text-center">
-            <p className="font-semibold tracking-wider">KÜCHENPASS</p>
+            <Image
+              src="/brand/mk-logo-ink.png"
+              alt=""
+              width={240}
+              height={199}
+              className="mx-auto h-14 w-auto opacity-90"
+            />
+            <p className="mt-3 font-semibold tracking-wider">KÜCHENPASS</p>
             <p className="text-muted">Tisch 1: Ihr Betrieb</p>
           </div>
           <hr className="my-4 border-dashed border-ink/30" />

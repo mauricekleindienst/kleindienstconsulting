@@ -25,6 +25,9 @@ export default defineConfig({
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
     { name: "mobil", use: { ...devices["Pixel 7"] } },
     { name: "mobil-klein", use: { ...devices["Pixel 7"], viewport: { width: 320, height: 640 } } },
+    // iPhone-Abmessungen (kleinstes und größtes Modell), gerendert mit Chromium
+    { name: "iphone-se", use: { ...devices["iPhone SE"], browserName: "chromium" } },
+    { name: "iphone-pro-max", use: { ...devices["iPhone 15 Pro Max"], viewport: { width: 440, height: 956 }, browserName: "chromium" } },
   ],
   // Getestet wird der statische Export (./out) hinter dem Worker – wie auf Cloudflare.
   // Vorher bauen: npm run build (oder npm run test:e2e)

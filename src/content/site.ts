@@ -12,8 +12,12 @@ export const site = {
   shortName: "Kleindienst",
   url: "https://gastro-kleindienst.de",
   description:
-    "Gastronomieberatung in München & Umgebung: Ex-Küchenchef Mario Kleindienst (Spatenhaus, Augustiner, Kuffler) optimiert Kalkulation, Wareneinsatz, Speisekarte, Küche & Personal. Kostenfreies Erstgespräch.",
+    "Gastronomieberatung in München vom Küchenchef: Kalkulation, Speisekarte, Küche & Personal. Erfahrung aus Wiesn, Spatenhaus & Kuffler. Erstgespräch gratis.",
   locale: "de_DE",
+  /** Google Search Console: Verifizierungscode (Meta-Tag-Methode) hier eintragen */
+  googleSiteVerification: "" as string,
+  /** Standort für die lokale Suche (Neuried bei München) */
+  geo: { latitude: 48.0931, longitude: 11.4659 },
   owner: {
     name: "Mario Kleindienst",
     role: "Inhaber & Gastronomieberater",
@@ -24,7 +28,7 @@ export const site = {
      */
     portrait: {
       src: "/mario-kleindienst.jpg",
-      alt: "Mario Kleindienst mit verschränkten Armen in einer holzvertäfelten Gaststube",
+      alt: "Gastronomieberater Mario Kleindienst mit verschränkten Armen in einer holzvertäfelten Gaststube",
       width: 1448,
       height: 1086,
       focus: "57% 28%",
@@ -217,6 +221,11 @@ export const principles = [
 
 export const faqs = [
   {
+    question: "Was macht ein Gastronomieberater?",
+    answer:
+      "Ein Gastronomieberater analysiert Ihren Betrieb von außen und hilft, ihn wirtschaftlicher und besser organisiert zu führen – von Kalkulation, Wareneinsatz und Speisekarte über Küchenabläufe und HACCP bis zu Personal, Konzept und Neueröffnung. Ich bringe dafür über 35 Jahre Erfahrung aus der Küche mit, davon fast zwei Jahrzehnte als Küchenchef in München.",
+  },
+  {
     question: "Was kostet eine Gastronomieberatung?",
     answer:
       "Das hängt vom Umfang ab. Nach dem kostenfreien Erstgespräch erhalten Sie ein transparentes Angebot – als Tagessatz oder Projektpauschale. Je nach Vorhaben kommen zudem öffentliche Förderprogramme für Unternehmensberatung in Frage; wir prüfen das gerne mit Ihnen.",
@@ -235,6 +244,11 @@ export const faqs = [
     question: "Arbeiten Sie auch vor Ort?",
     answer:
       "Ja. Gastronomie versteht man nur im Betrieb. In München und im Umland – von Starnberg über Freising und Erding bis Rosenheim und Garmisch-Partenkirchen – komme ich zu Ihnen. Abstimmungen gerne auch per Telefon oder Video.",
+  },
+  {
+    question: "Wird eine Gastronomieberatung gefördert?",
+    answer:
+      "Unter bestimmten Voraussetzungen können Beratungskosten für kleine und mittlere Unternehmen über öffentliche Förderprogramme bezuschusst werden. Welche Programme aktuell für Ihren Betrieb in Frage kommen, klären wir gerne im Erstgespräch.",
   },
   {
     question: "Wie vertraulich werden meine Zahlen behandelt?",

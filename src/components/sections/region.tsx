@@ -11,7 +11,8 @@ export function Region() {
             Die Münchner Gastronomie kenne ich aus der eigenen Küche: vom Traditionswirtshaus in der
             Altstadt über die Hotelküche bis zur Verkehrsgastronomie am Flughafen. Ich kenne die Gäste,
             die Lieferanten, den Personalmarkt und die Kosten der Region. Deshalb berate ich Betriebe in
-            der Stadt und im Umland persönlich vor Ort.
+            der Stadt und im Umland persönlich vor Ort – vom Wirtshaus und Biergarten über Hotels und
+            Kantinen bis zum Festzelt auf der Wiesn.
           </SectionLead>
         </SectionHeader>
 
