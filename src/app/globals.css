@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design-Tokens „Wirtshaus & Küchenpass“
+   Leinenweiß (Tischwäsche), Schiefer (Kreidetafel), Flaschengrün
+   (Wirtshaus-Vertäfelung), Messing (Zapfhahn, Türgriff).
+   Alle Text/Hintergrund-Paare erfüllen WCAG AA (≥ 4,5 : 1).
+------------------------------------------------------------------- */
+@theme {
+  --color-linen: #f6f6f1;
+  --color-linen-deep: #ebebe3;
+  --color-sheet: #ffffff;
+  --color-ink: #141916;
+  --color-ink-soft: #343b36;
+  --color-muted: #5a615c;
+  --color-line: #d8d9cf;
+  --color-green: #1e3a2f;
+  --color-green-hover: #142a21;
+  --color-green-soft: #dfe8e2;
+  --color-brass: #7c5e25;
+  --color-brass-light: #d9bf86;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-linen);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Anker springen unter den Sticky-Header */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-green);
+    color: var(--color-linen);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+  }
+
+  a,
+  button,
+  summary {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Bricolage mit schmaler, kräftiger Anmutung – wie Wirtshaus-Beschilderung */
+@utility font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 88;
+  letter-spacing: -0.02em;
+}
+
+/* Fluide Überschriften (Bencium: fluid typography mit clamp) */
+@utility text-display-xl {
+  font-size: clamp(2.6rem, 1.4rem + 5.2vw, 5.6rem);
+  line-height: 0.98;
+}
+
+@utility text-display-lg {
+  font-size: clamp(2.1rem, 1.45rem + 2.6vw, 3.6rem);
+  line-height: 1.04;
+}
+
+/* Gezackte Abrisskante des Bons (unter dem Element) */
+@utility bon-edge {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    height: 10px;
+    background:
+      linear-gradient(135deg, var(--color-sheet) 5px, transparent 0) 0 0 / 10px 10px repeat-x,
+      linear-gradient(-135deg, var(--color-sheet) 5px, transparent 0) 0 0 / 10px 10px repeat-x;
+  }
+}
+
+/* Der Bon „druckt“ einmal beim Laden – der einzige automatische Bewegungsmoment der Seite */
+@keyframes print {
+  from {
+    transform: translateY(-38%);
+    clip-path: inset(38% -12px -12px -12px);
+  }
+  to {
+    transform: none;
+    clip-path: inset(-12px -12px -12px -12px);
+  }
+}
+
+@utility animate-print {
+  animation: print 1.4s var(--ease-out-soft) 0.25s both;
+}
