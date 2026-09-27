@@ -125,7 +125,7 @@ export const services: readonly Service[] = [
 ]
 
 /**
- * Beruflicher Werdegang ab 2007 (Quellen: Lebenslauf 2015, Arbeitszeugnis Haus Kuffler 2020, Angaben der Familie).
+ * Beruflicher Werdegang ab 2007 plus Restaurant Hannappel (Quellen: Lebenslauf 2015, Arbeitszeugnis Haus Kuffler 2020, Angaben der Familie).
  * Quelle für Spatenhaus: Abendzeitung München (Ess-Klasse, 2023).
  * TODO: Zeiträume nach 2020 prüfen/ergänzen.
  */
@@ -138,6 +138,7 @@ export const career = [
   { period: "2010 – 2011", role: "Küchenchef", place: "Augustiner Bräustuben, München" },
   { period: "2008 – 2010", role: "Sous-Chef / Küchenchef", place: "Hotel Deutsche Eiche, Lochhausen" },
   { period: "2007 – 2008", role: "Küchenchef", place: "Mohrenplatz, Garmisch-Partenkirchen", note: "Neueröffnung" },
+  { period: "2000 – 2006", role: "Sous-Chef", place: "Restaurant Hannappel, Essen", note: "16 Punkte" },
 ] as const
 
 /**

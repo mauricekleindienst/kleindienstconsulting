@@ -26,8 +26,9 @@ export function About() {
         <div>
           <div className="max-w-[62ch] space-y-5 text-lg leading-relaxed text-ink-soft">
             <p>
-              Mein Handwerk habe ich 1988 als Koch gelernt. Seitdem stehe ich in Küchen, seit fast
-              zwei Jahrzehnten als Küchenchef in München und Oberbayern: in den Augustiner
+              Mein Handwerk habe ich 1988 als Koch gelernt. Als Sous-Chef im Restaurant Hannappel in
+              Essen, einem mit 16 Punkten ausgezeichneten Haus, habe ich gehobene Küche von innen
+              kennengelernt. Seit fast zwei Jahrzehnten bin ich Küchenchef in München und Oberbayern: in den Augustiner
               Bräustuben, im Spöckmeier, bei der Neueröffnung am Mohrenplatz und für die
               Kuffler-Gruppe am Münchner Flughafen und im Spatenhaus an der Oper.
             </p>
