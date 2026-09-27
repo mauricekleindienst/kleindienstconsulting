@@ -37,6 +37,13 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Die mobile Schnellkontakt-Leiste darf fokussierte oder angesprungene Elemente nie verdecken (WCAG 2.4.11) */
+  @media (width < 48rem) {
+    html {
+      scroll-padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

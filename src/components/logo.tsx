@@ -7,7 +7,7 @@ export function Logo({ className, accent }: { className?: string; accent?: strin
     <Link
       href="/"
       translate="no"
-      className={cn("group inline-flex min-w-0 items-center gap-3", className)}
+      className={cn("group inline-flex min-h-11 min-w-0 items-center gap-3", className)}
     >
       <LogoMark
         accent={accent}

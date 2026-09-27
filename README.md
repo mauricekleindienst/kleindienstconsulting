@@ -12,6 +12,19 @@ npm run lint
 npm run build    # Produktions-Build
 ```
 
+### Tests (End-to-End)
+
+```bash
+npm run test:e2e                          # Build + Playwright (Desktop, Pixel 7, 320 px)
+RELEASE=1 npx playwright test -g Livegang # Vor dem Livegang: schlägt fehl, solange [Platzhalter] existieren
+```
+
+Geprüft werden u. a.: alle Seiten laden ohne Konsolen-/Netzwerkfehler, axe (WCAG 2.2 AA) ohne Verstöße,
+Überschriften-Hierarchie, SEO-Metadaten, interne Links und Anker, externe Links (`noopener`), 404-Seite,
+FAQ per Maus/Tastatur, Skip-Link, mobiles Menü (Fokus, Escape, `inert`, Resize), Schnellkontakt-Leiste,
+Touch-Ziele ≥ 44 px, kein horizontales Scrollen, keine Cookies und keine Drittanbieter-Requests,
+JSON-LD, robots/sitemap/OG-Bild, Sicherheits-Header, Pflichtangaben in Impressum und Datenschutz.
+
 Deployment: Repository bei Vercel importieren – keine weitere Konfiguration nötig.
 
 ## Inhalte pflegen

@@ -1,25 +1,44 @@
 "use client"
 
 import Link from "next/link"
-import { useEffect, useId, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { navigation } from "@/content/site"
 import { Close, Menu } from "./ui/icons"
 
+/** Bereiche hinter dem geöffneten Menü – werden für Tastatur und Screenreader gesperrt. */
+const BACKGROUND = "main, footer, nav[aria-label='Schnellkontakt']"
+
 export function MobileNav() {
   const [open, setOpen] = useState(false)
   const panelId = useId()
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!open) return
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false)
-    }
-    document.addEventListener("keydown", onKey)
+
+    const background = document.querySelectorAll<HTMLElement>(BACKGROUND)
+    background.forEach((el) => (el.inert = true))
     document.body.style.overflow = "hidden"
+    panelRef.current?.querySelector("a")?.focus()
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+      setOpen(false)
+      toggleRef.current?.focus()
+    }
+    // Beim Wechsel auf Desktop-Breite schließen, sonst bliebe das Scrollen gesperrt
+    const desktop = window.matchMedia("(min-width: 48rem)")
+    const onResize = () => desktop.matches && setOpen(false)
+
+    document.addEventListener("keydown", onKey)
+    desktop.addEventListener("change", onResize)
     return () => {
-      document.removeEventListener("keydown", onKey)
+      background.forEach((el) => (el.inert = false))
       document.body.style.overflow = ""
+      document.removeEventListener("keydown", onKey)
+      desktop.removeEventListener("change", onResize)
     }
   }, [open])
 
@@ -28,6 +47,7 @@ export function MobileNav() {
   return (
     <div className="md:hidden">
       <button
+        ref={toggleRef}
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
@@ -42,6 +62,7 @@ export function MobileNav() {
       {open
         ? createPortal(
             <div
+              ref={panelRef}
               id={panelId}
               className="fixed inset-x-0 top-[calc(4.5rem+env(safe-area-inset-top))] bottom-0 z-50 overflow-y-auto overscroll-contain bg-linen md:hidden"
             >
